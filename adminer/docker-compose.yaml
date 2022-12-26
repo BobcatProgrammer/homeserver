@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    networks:
+      - internal
+networks:
+  internal:
+    name: internal
+    external: true
