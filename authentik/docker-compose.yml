@@ -3,12 +3,13 @@ version: '3.4'
 
 services:
   server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.11.4}
-    restart: unless-stopped
+    image: ghcr.io/goauthentik/server:2022.11.4
+    container_name: authentik
+    restart: always
     command: server
     environment:
       AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__HOST: postgres
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
@@ -17,16 +18,17 @@ services:
       - ./custom-templates:/templates
     env_file:
       - .env
-    ports:
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
+    # ports:
+      # - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
+      # - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
   worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.11.4}
-    restart: unless-stopped
+    image: ghcr.io/goauthentik/server:2022.11.4
+    container_name: authentik-worker
+    restart: always
     command: worker
     environment:
       AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__HOST: postgres
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
@@ -45,8 +47,3 @@ services:
     env_file:
       - .env
 
-volumes:
-  database:
-    driver: local
-  redis:
-    driver: local
