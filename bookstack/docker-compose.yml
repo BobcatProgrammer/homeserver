@@ -11,6 +11,7 @@ services:
       - DB_USER=bookstack
       - DB_PASS=${DB_PASS:?database password required}
       - DB_DATABASE=bookstack
+      - APP_URL=${APP_URL:-}
     volumes:
       - data:/config
     restart: always
