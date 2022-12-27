@@ -13,7 +13,7 @@ services:
     networks:
       - internal
     healthcheck:
-      test: curl -f http://localhost/ || exit 1
+      test: ["CMD", "nc", "-z", "-v", "localhost", "80"]
       interval: 10s
       timeout: 3s
 
