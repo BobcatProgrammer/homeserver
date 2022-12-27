@@ -15,8 +15,6 @@ services:
     volumes:
       - data:/config
     restart: always
-    depends_on:
-      - mariadb
     networks:
       - internal
 
