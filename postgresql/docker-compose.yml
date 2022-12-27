@@ -13,8 +13,7 @@ services:
       - postgresql_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=${PG_PASS:?database password required}
-      - POSTGRES_USER=${PG_USER:-authentik}
-      - POSTGRES_DB=${PG_DB:-authentik}
+      - POSTGRES_USER=${PG_USER:-root}
     networks:
       - internal
 
