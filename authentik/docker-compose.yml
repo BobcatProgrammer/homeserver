@@ -16,8 +16,6 @@ services:
     volumes:
       - ./media:/media
       - ./custom-templates:/templates
-    env_file:
-      - .env
     # ports:
       # - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
       # - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
