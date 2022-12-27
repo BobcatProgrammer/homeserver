@@ -12,13 +12,12 @@ services:
       #- OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
     volumes:
       - config:/config
-      - books:/books
+      - /nfs/books:/books
     restart: always
     networks:
       - internal
 volumes:
   config:
-  books:
 networks:
   internal:
     name: internal
