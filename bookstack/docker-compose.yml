@@ -6,11 +6,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DB_HOST=mariadb
+      - DB_HOST=${DB_HOST:-mariadb}
       - DB_PORT=3306
       - DB_USER=bookstack
-      # Set DB_PASS in portainer
-      #- DB_PASS=<yourdbpass>
+      - DB_PASS=${DB_PASS:?database password required}
       - DB_DATABASE=bookstack
     volumes:
       - data:/config
