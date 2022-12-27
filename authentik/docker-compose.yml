@@ -42,6 +42,4 @@ services:
       - ./media:/media
       - ./certs:/certs
       - ./custom-templates:/templates
-    env_file:
-      - .env
 
