@@ -12,6 +12,9 @@ services:
       - DB_PASS=${DB_PASS:?database password required}
       - DB_DATABASE=bookstack
       - APP_URL=${APP_URL:-}
+      # - CACHE_DRIVER=redis
+      # - SESSION_DRIVER=redis
+      # - REDIS_SERVERS=${REDIS_SERVERS:-redis:6379:0}
     volumes:
       - data:/config
     restart: always
