@@ -3,6 +3,7 @@ services:
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
+    restart: always
     environment:
       - PUID=1000
       - PGID=1000
@@ -11,6 +12,10 @@ services:
       - data:/config
     networks:
       - internal
+    healthcheck:
+      test: ["CMD", "wget", "--tries=1", "--spider", "http://localhost/"]
+      interval: 10s
+      timeout: 3s
 volumes:
   data:
 networks:

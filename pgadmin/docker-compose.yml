@@ -3,6 +3,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4:6.18
     container_name: pgadmin
+    restart: always
     environment:
         PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:? Default Email is required}
         PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:? Default Password is required}
