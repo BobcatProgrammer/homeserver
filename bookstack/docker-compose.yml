@@ -16,7 +16,7 @@ services:
       - SESSION_DRIVER=redis
       - REDIS_SERVERS=${REDIS_SERVERS:-redis:6379:0}
       - AUTH_METHOD=oidc
-      - AUTH_AUTO_INITIATE=false
+      - AUTH_AUTO_INITIATE=true
       - OIDC_NAME=SSO
       - OIDC_DISPLAY_NAME_CLAIMS=email
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
