@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  api:
+    image: vikunja/api:0.20
+    container_name: vikunja_api
+    environment:
+      VIKUNJA_DATABASE_HOST: mariadb
+      VIKUNJA_DATABASE_PASSWORD: ${DB_PASSWORD:? PW is required}
+      VIKUNJA_DATABASE_TYPE: mysql
+      VIKUNJA_DATABASE_USER: vikunja
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_SERVICE_JWTSECRET: ${JWT_SECRET:? Secret is required}
+      VIKUNJA_SERVICE_FRONTENDURL: ${FRONTEND_URL:? FRONTEND Url required}
+    volumes: 
+      - files:/app/vikunja/files
+    networks:
+      - internal
+    restart: always
+  frontend:
+    image: vikunja/frontend:0.20
+    container_name: vikunja
+    networks:
+      - internal
+    restart: always
+
+volumes:
+  files:
+networks:
+  internal:
+    name: internal
+    external: true
