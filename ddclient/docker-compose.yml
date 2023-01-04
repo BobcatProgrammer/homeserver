@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  ddclient:
+    image: linuxserver/ddclient:3.10.0
+    container_name: ddclient
+    volumes: 
+    - /nfs/docker/ddclient:/config
+    restart: always
+    networks:
+      - internal
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+
+networks:
+  internal:
+    name: internal
+    external: true
