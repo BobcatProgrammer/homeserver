@@ -12,7 +12,8 @@ services:
       VIKUNJA_SERVICE_JWTSECRET: ${JWT_SECRET:? Secret is required}
       VIKUNJA_SERVICE_FRONTENDURL: ${FRONTEND_URL:? FRONTEND Url required}
     volumes: 
-      - files:/app/vikunja/files
+      - /nfs/docker/vikunja/files:/app/vikunja/files
+      - /nfs/docker/vikunja/config:/etc/vikunja
     networks:
       - internal
     restart: always
@@ -23,8 +24,6 @@ services:
       - internal
     restart: always
 
-volumes:
-  files:
 networks:
   internal:
     name: internal
