@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  papermerge:
+    image: linuxserver/papermerge:2.0.1
+    container_name: papermerge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      #- REDIS_URL= #optional
+    volumes:
+      - /nfs/docekr/papermerge/config:/config
+      - /nfs/docekr/papermerge/data:/data
+    restart: always
+    networks:
+      - internal
+
+
+networks:
+  internal:
+    name: internal
+    external: true
