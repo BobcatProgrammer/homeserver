@@ -8,6 +8,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
       - DOCKER_MODS=linuxserver/mods:papermerge-multilangocr
+      - OCRLANG=deu,eng
       #- REDIS_URL= #optional
     volumes:
       - /nfs/docekr/papermerge/config:/config
