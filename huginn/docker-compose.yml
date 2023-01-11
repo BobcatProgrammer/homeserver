@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  huginn:
+    image: huginn/huginn:latest
+    container_name: huginn
+    restart: always
+    networks:
+      - internal
+    environment:
+      - HUGINN_DATABASE_HOST=${DB_HOST:-mariadb}
+      - HUGINN_DATABASE_NAME=${DB_NAME:-huginn}
+      - HUGINN_DATABASE_USERNAME=${DB_USER:-huginn} 
+      - HUGINN_DATABASE_PASSWORD=${DB_PASS:? Password is required}
+      - HUGINN_PORT=3000
+      #- HUGINN_HOST=${HOST:? Host is required}
+      - TIMEZONE=Europe/Berlin
+
+networks:
+  internal:
+    name: internal
+    external: true
