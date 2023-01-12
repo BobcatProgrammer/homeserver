@@ -11,6 +11,9 @@ services:
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_SERVICE_JWTSECRET: ${JWT_SECRET:? Secret is required}
       VIKUNJA_SERVICE_FRONTENDURL: ${FRONTEND_URL:? FRONTEND Url required}
+      VIKUNJA_REDIS_ENABLED: ${REDIS_ENABLED:-false}
+      VIKUNJA_REDIS_HOST: ${REDIS_HOST:-redis:6379}
+      VIKUNJA_REDIS_DB: ${REDIS_DB:-0}
     volumes: 
       - /nfs/docker/vikunja/files:/app/vikunja/files
       - /nfs/docker/vikunja/config:/etc/vikunja
