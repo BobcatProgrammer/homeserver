@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: always
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - /nfs/docker/paperless/data:/usr/src/paperless/data
+      - /nfs/docker/paperless/media:/usr/src/paperless/media
+      - /nfs/docker/paperless/export:/usr/src/paperless/export
+      - /nfs/docker/paperless/consume:/usr/src/paperless/consume
+    environment:
+      USERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_TIME_ZONE: Europe/Berlin
+      PAPERLESS_URL: ${URL:? URL is required}
+      PAPERLESS_REDIS: ${REDIS:-redis://redis:6379}
+      PAPERLESS_DBENGINE: mariadb
+      PAPERLESS_DBHOST: ${DB_HOST:-mariadb}
+      PAPERLESS_DBUSER: $(DB_USER:-paperless}
+      PAPERLESS_DBPASS: ${DB_PASS:? Password is reuqired} # only needed if non-default password
+      PAPERLESS_DBPORT: 3306
+      PAPERLESS_SECRET_KEY: ${SECRET_KEY:? Secret KEy Reuqired} # used for token encryption
+      PAPERLESS_OCR_LANGUAGE: deu
+
+networks:
+  internal:
+    name: internal
+    external: true
