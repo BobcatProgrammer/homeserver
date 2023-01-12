@@ -14,6 +14,7 @@ services:
       VIKUNJA_REDIS_ENABLED: ${REDIS_ENABLED:-false}
       VIKUNJA_REDIS_HOST: ${REDIS_HOST:-redis:6379}
       VIKUNJA_REDIS_DB: ${REDIS_DB:-0}
+      VIKUNJA_SERVICE_ENABLETOTP: false # We use Oauth with 2FA enabled
     volumes: 
       - /nfs/docker/vikunja/files:/app/vikunja/files
       - /nfs/docker/vikunja/config:/etc/vikunja
