@@ -20,7 +20,7 @@ services:
     container_name: redis-commander
     restart: always
     environment:
-      - REDIS_HOSTS=local:redis:6379
+      - REDIS_HOSTS=${REDIS_HOSTS:-default:redis:6379:0}
     networks:
       - internal
 
