@@ -24,7 +24,7 @@ services:
       PAPERLESS_REDIS: ${REDIS:-redis://redis:6379}
       PAPERLESS_DBENGINE: mariadb
       PAPERLESS_DBHOST: ${DB_HOST:-mariadb}
-      PAPERLESS_DBUSER: $(DB_USER:-paperless}
+      PAPERLESS_DBUSER: ${DB_USER:-paperless}
       PAPERLESS_DBPASS: ${DB_PASS:? Password is required} # only needed if non-default password
       PAPERLESS_DBPORT: 3306
       PAPERLESS_SECRET_KEY: ${SECRET_KEY:? Secret KEy Reuqired} # used for token encryption
