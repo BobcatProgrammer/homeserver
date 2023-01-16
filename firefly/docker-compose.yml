@@ -29,6 +29,16 @@ services:
       TRUSTED_PROXIES: 172.23.0.0/16
     networks:
       - internal
+  fidi:
+    image: fireflyiii/data-importer:latest
+    container_name: fidi
+    restart: always
+    environment:
+      TZ: Europe/Berlin
+      FIREFLY_III_URL: http://firefly:8080
+      VANITY_URL: ${APP_URL:? APP Url is required}
+      FIREFLY_III_CLIENT_ID: ${CLIENT_ID}
+      TRUSTED_PROXIES: 172.23.0.0/16
 
 volumes:
   upload:
