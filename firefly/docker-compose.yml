@@ -25,6 +25,8 @@ services:
       AUTHENTICATION_GUARD: remote_user_guard
       AUTHENTICATION_GUARD_HEADER: X-authentik-username
       AUTHENTICATION_GUARD_EMAIL: X-authentik-email
+      APP_URL: ${APP_URL:? APP Url is required}
+      TRUSTED_PROXIES: 172.23.0.0/16
     networks:
       - internal
 
