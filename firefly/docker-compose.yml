@@ -26,7 +26,7 @@ services:
       AUTHENTICATION_GUARD_HEADER: X-authentik-username
       AUTHENTICATION_GUARD_EMAIL: X-authentik-email
       APP_URL: ${APP_URL:? APP Url is required}
-      TRUSTED_PROXIES: 172.23.0.0/16
+      TRUSTED_PROXIES: **
     networks:
       - internal
   fidi:
@@ -38,7 +38,7 @@ services:
       FIREFLY_III_URL: http://firefly:8080
       VANITY_URL: ${APP_URL:? APP Url is required}
       FIREFLY_III_ACCESS_TOKEN: ${PAT:? PAT required}
-      TRUSTED_PROXIES: 172.23.0.0/16
+      TRUSTED_PROXIES: **
     networks:
       - internal
 
