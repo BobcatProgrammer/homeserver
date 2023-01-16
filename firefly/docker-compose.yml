@@ -39,6 +39,8 @@ services:
       VANITY_URL: ${APP_URL:? APP Url is required}
       FIREFLY_III_ACCESS_TOKEN: ${PAT:? PAT required}
       TRUSTED_PROXIES: "**"
+      SPECTRE_APP_ID: ${SPECTRE_APP_ID:-}
+      SPECTRE_SECRET: ${SPECTRE_SECRET:-}
     networks:
       - internal
 
