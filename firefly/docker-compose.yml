@@ -41,6 +41,8 @@ services:
       TRUSTED_PROXIES: "**"
       SPECTRE_APP_ID: ${SPECTRE_APP_ID:-}
       SPECTRE_SECRET: ${SPECTRE_SECRET:-}
+      NORDIGEN_ID: ${NORDIGEN_ID}
+      NORDIGEN_KEY: ${NORDIGEN_KEY}
     networks:
       - internal
 
