@@ -20,8 +20,8 @@ services:
       USERMAP_UID: 1000
       USERMAP_GID: 1000
       PAPERLESS_TIME_ZONE: Europe/Berlin
-      PAPERLESS_ALLOWED_HOSTS: ${URL:? URL is required}
-      PAPERLESS_CORS_ALLOWED_HOSTS: ${URL:? URL is required}
+      PAPERLESS_ALLOWED_HOSTS: ${ALLOWED_HOSTS:? URL is required}
+      PAPERLESS_CORS_ALLOWED_HOSTS: ${CORS_ALLOWED_HOSTS:? URL is required}
       PAPERLESS_REDIS: ${REDIS:-redis://redis:6379}
       PAPERLESS_DBENGINE: mariadb
       PAPERLESS_DBHOST: ${DB_HOST:-mariadb}
