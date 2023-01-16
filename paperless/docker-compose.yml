@@ -34,6 +34,8 @@ services:
       PAPERLESS_LOGOUT_REDIRECT_URL: ${LOGOUT_URL:-None}
       PAPERLESS_ADMIN_USER: ${ADMIN_USER:?- Admin user must be set}
       PAPERLESS_ADMIN_PASSWORD: ${ADMIN_PASS:? Admin Pass must be set}
+      # Paperless cusotmizing settings
+      PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
 
 networks:
   internal:
