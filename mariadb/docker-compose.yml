@@ -14,7 +14,15 @@ services:
     restart: always
     networks:
       - internal
-
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=mariadb
+      - ADMINER_DESIGN=pepa-linha
+    networks:
+      - internal
 volumes:
   mariadb_data:
 
