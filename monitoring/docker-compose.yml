@@ -16,9 +16,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - uptime-kuma-data:/app/data
     restart: always
-    environment:
-      PUID: 1000
-      PGID: 1000
+    # environment:
+      # PUID: 1000
+      # PGID: 1000
     networks:
       - internal
 
