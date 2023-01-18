@@ -13,10 +13,13 @@ services:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     volumes:
-      - data:/app/data
+      - uptime-kuma-data:/app/data
     restart: always
     networks:
       - internal
+
+volumes:
+  uptime-kuma-data:
 
 networks:
   internal:
