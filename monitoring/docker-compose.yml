@@ -13,8 +13,12 @@ services:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - uptime-kuma-data:/app/data
     restart: always
+    environment:
+      PUID: 1000
+      PGID: 1000
     networks:
       - internal
 
