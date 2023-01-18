@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  plugsy:
+    image: plugsy/core:latest
+    container_name: plugsy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    networks:
+      - internal
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - data:/app/data
+    restart: always
+    networks:
+      - internal
+
+networks:
+  internal:
+    name: internal
+    external: true
