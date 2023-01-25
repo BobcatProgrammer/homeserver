@@ -17,8 +17,8 @@ services:
       - /nfs/docker/paperless/export:/usr/src/paperless/export
       - /nfs/docker/paperless/consume:/usr/src/paperless/consume
     environment:
-      USERMAP_UID: 1000
-      USERMAP_GID: 1000
+      USERMAP_UID: 0
+      USERMAP_GID: 0
       PAPERLESS_TIME_ZONE: Europe/Berlin
       PAPERLESS_CSRF_TRUSTED_ORIGINS: ${CSRF_ALLOWED_HOSTS:? URL is required}
       PAPERLESS_ALLOWED_HOSTS: ${ALLOWED_HOSTS:? URL is required}
