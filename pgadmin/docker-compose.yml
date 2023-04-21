@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   pgadmin:
-    image: dpage/pgadmin4:6.21
+    image: dpage/pgadmin4:7.0
     container_name: pgadmin
     restart: always
     environment:
