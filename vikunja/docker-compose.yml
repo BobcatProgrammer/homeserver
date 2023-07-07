@@ -24,7 +24,7 @@ services:
       - internal
     restart: always
   frontend:
-    image: vikunja/frontend:0.20
+    image: vikunja/frontend:0.21
     container_name: vikunja
     networks:
       - internal
