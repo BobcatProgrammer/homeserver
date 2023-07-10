@@ -1,0 +1,36 @@
+version: "3"
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:next
+    container_name: n8n
+    restart: always
+    networks:
+      - internal
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_EMAIL_MODE: smtp
+      N8N_SMTP_HOST: ${SMTP_HOST:?Host not set}
+      N8N_SMTP_USER: ${SMTP_USER:?User not set}
+      N8N_SMTP_PASS: ${SMTP_PASS:?Password not set}
+      N8N_SMTP_SENDER: ${SMTP_SENDER:?Sender not set}
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-n8n}
+      DB_POSTGRESDB_HOST: ${POSTGRES_HOST:-postgres}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER:-n8n}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD:?Password not set}
+      N8N_HOST: ${SUBDOMAIN:-n8n}.${DOMAIN_NAME}
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https
+      NODE_ENV: production
+      WEBHOOK_URL: https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME}/
+      GENERIC_TIMEZONE: Europe/Berlin
+    volumes:
+      - n8n:/home/node/.n8n
+
+volumes:
+  n8n:
+networks:
+  internal:
+    name: internal
+    external: true
