@@ -22,7 +22,7 @@ services:
       N8N_HOST: ${SUBDOMAIN:-n8n}.${DOMAIN_NAME}
       N8N_PORT: 5678
       N8N_PROTOCOL: https
-      NODE_ENV: production
+      # NODE_ENV: production
       WEBHOOK_URL: https://${SUBDOMAIN:-n8n}.${DOMAIN_NAME}/
       GENERIC_TIMEZONE: Europe/Berlin
       N8N_LOG_LEVEL: debug
