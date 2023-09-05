@@ -1,17 +1,28 @@
 version: "3.9"
 services:
   ddclient:
-    image: linuxserver/ddclient:3.10.0
-    container_name: ddclient
-    volumes: 
-    - /nfs/docker/ddclient:/config
+    image: favonia/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
     restart: always
     networks:
       - internal
+    cap_add:
+      - SETUID
+      - SETGID
+    cap_drop:
+      - ALL
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - CF_API_TOKEN=${CF_API_TOKEN:?Variable not set}
+      - DOMAINS=${DOMAINS:?Variable not set}
+      - PROXIED=false
+      
+
 
 networks:
   internal:
