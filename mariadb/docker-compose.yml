@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   mariadb:
-    image: lscr.io/linuxserver/mariadb:10.6.12
+    image: lscr.io/linuxserver/mariadb:10.11.6
     container_name: mariadb
     pull_policy: always
     environment:
