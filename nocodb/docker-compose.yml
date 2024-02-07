@@ -9,7 +9,6 @@ services:
     volumes: 
       - nc_data:/usr/app/data
     pull_policy: always
-    restart: always
     networks:
       - internal
 
