@@ -9,6 +9,8 @@ services:
     environment:
       DATABASE_URL: postgres://${PG_USER:-windmill}:${PG_PASS:?PG_PASS required}@${PG_HOST:-postgres}/${PG_DB:-windmill}?sslmode=disable
       MODE: server
+    networks:
+      - internal
 
   windmill_worker:
     image: ghcr.io/windmill-labs/windmill:main
@@ -24,6 +26,8 @@ services:
       # mount the docker socket to allow to run docker containers from within the workers
       - /var/run/docker.sock:/var/run/docker.sock
       - worker_dependency_cache:/tmp/windmill/cache
+    networks:
+      - internal
 
   ## This worker is specialized for "native" jobs. Native jobs run in-process and thus are much more lightweight than other jobs
   windmill_worker_native:
@@ -35,6 +39,8 @@ services:
       DATABASE_URL: postgres://${PG_USER:-windmill}:${PG_PASS:?PG_PASS required}@${PG_HOST:-postgres}/${PG_DB:-windmill}?sslmode=disable
       MODE: worker
       WORKER_GROUP: native
+    networks:
+      - internal
 
   lsp:
     image: ghcr.io/windmill-labs/windmill-lsp:latest
@@ -43,6 +49,8 @@ services:
     restart: unless-stopped
     volumes:
       - lsp_cache:/root/.cache
+    networks:
+      - internal
 
   ## This worker is specialized for reports or scraping jobs. It is assigned the "reports" worker group which has an init script that installs chromium and can be targeted by using the "chromium" worker tag.
   # windmill_worker_reports:
@@ -65,3 +73,8 @@ services:
 volumes:
   worker_dependency_cache: 
   lsp_cache: 
+  
+networks:
+  internal:
+    name: internal
+    external: true
