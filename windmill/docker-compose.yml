@@ -3,6 +3,7 @@ version: "3.9"
 services:
   windmill_server:
     image: ghcr.io/windmill-labs/windmill:main
+    name: windmill_server
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -11,6 +12,7 @@ services:
 
   windmill_worker:
     image: ghcr.io/windmill-labs/windmill:main
+    name: windmill_worker
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -26,6 +28,7 @@ services:
   ## This worker is specialized for "native" jobs. Native jobs run in-process and thus are much more lightweight than other jobs
   windmill_worker_native:
     image: ghcr.io/windmill-labs/windmill:main
+    name: windmill_worker_native
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -35,6 +38,7 @@ services:
 
   lsp:
     image: ghcr.io/windmill-labs/windmill-lsp:latest
+    name: windmill_lsp
     pull_policy: always
     restart: unless-stopped
     volumes:
