@@ -31,10 +31,29 @@ services:
       PAPERLESS_DBPORT: 3306
       PAPERLESS_SECRET_KEY: ${SECRET_KEY:? Secret KEy Reuqired} # used for token encryption
       PAPERLESS_OCR_LANGUAGE: deu
-      # Admin User & Proxy Login
-      PAPERLESS_ENABLE_HTTP_REMOTE_USER: true
+      # Admin User & OIDC Login
+      # PAPERLESS_ENABLE_HTTP_REMOTE_USER: true
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
+        {
+          "openid_connect": {
+            "APPS": [
+              {
+                "provider_id": "authentik",
+                "name": "SSO",
+                "client_id": "${OIDC_CLIENT_ID:? Client ID required}",
+                "secret": "${OIDC_CLIENT_SECRET:? Client Secret required}",
+                "settings": {
+                  "server_url": "https://sso.trockel.family/application/o/paperless/.well-known/openid-configuration"
+                }
+              }
+            ],
+            "OAUTH_PKCE_ENABLED": "True"
+          }
+        }
+
       PAPERLESS_LOGOUT_REDIRECT_URL: ${LOGOUT_URL:-None}
-      PAPERLESS_ADMIN_USER: ${ADMIN_USER:?- Admin user must be set}
+      PAPERLESS_ADMIN_USER: ${ADMIN_USER:? Admin user must be set}
       PAPERLESS_ADMIN_PASSWORD: ${ADMIN_PASS:? Admin Pass must be set}
       # Paperless cusotmizing settings
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
