@@ -36,14 +36,16 @@ services:
     image: 'xavierh/goaccess-for-nginxproxymanager:latest'
     container_name: goaccess
     restart: always
+    networks:
+      - internal
     ports:
-        - '7880:7880'
+      - '7880:7880'
     environment:
       - PUID=0
       - PGID=0
       - TZ=Europe/Berlin
     volumes:
-      - nginx_data:/opt/log
+      - nginx_data:/opt/log:ro
 
 volumes:
   nginx_data:
