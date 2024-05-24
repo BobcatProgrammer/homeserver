@@ -32,6 +32,18 @@ services:
     volumes:
       - nginx_data:/data
       - nginx_le:/etc/letsencrypt
+  goaccess:
+    image: 'xavierh/goaccess-for-nginxproxymanager:latest'
+    container_name: goaccess
+    restart: always
+    ports:
+        - '7880:7880'
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Berlin
+    volumes:
+      - nginx_data:/opt/log
 
 volumes:
   nginx_data:
