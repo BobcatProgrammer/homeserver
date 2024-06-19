@@ -23,6 +23,8 @@ services:
       ENV: production
       DEFAULT_USER_ROLE: pending
       ENABLE_SIGNUP: True
+      # SSO
+      WEBUI_AUTH_TRUSTED_EMAIL_HEADER: X-AUTHENTIK-EMAIL
       # Model Connections
       OLLAMA_BASE_URL: http://ollama:11434
       OPENAI_API_BASE_URL: https://api.deepinfra.com/v1/openai
