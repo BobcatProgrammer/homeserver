@@ -16,7 +16,7 @@ services:
       ENABLE_SIGNUP: True
       RESET_CONFIG_ON_START: ${RESET_CONFIG_ON_START-false}
       # SSO
-      WEBUI_AUTH_TRUSTED_EMAIL_HEADER: X-AUTHENTIK-EMAIL
+      WEBUI_AUTH_TRUSTED_EMAIL_HEADER: ${WEBUI_AUTH_TRUSTED_EMAIL_HEADER}
       # Model Connections
       OPENAI_API_BASE_URL: https://api.deepinfra.com/v1/openai
       OPENAI_API_KEY: ${OPENAI_API_KEY?Variable not set}
