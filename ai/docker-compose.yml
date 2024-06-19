@@ -23,6 +23,7 @@ services:
       ENV: production
       DEFAULT_USER_ROLE: pending
       ENABLE_SIGNUP: True
+      RESET_CONFIG_ON_START: ${RESET_CONFIG_ON_START-false}
       # SSO
       WEBUI_AUTH_TRUSTED_EMAIL_HEADER: X-AUTHENTIK-EMAIL
       # Model Connections
