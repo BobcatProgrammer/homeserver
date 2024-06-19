@@ -62,11 +62,28 @@ services:
         <context>
         [context]
         </context>
+  flowise:
+    image: flowiseai/flowise
+    container_name: flowise
+    restart: unless-stopped
+    networks:
+      - internal
+    environment:
+      DISABLE_FLOWISE_TELEMETRY: true
+      PORT: 3000
+      DATABASE_PATH: /root/.flowise
+      APIKEY_PATH: /root/.flowise
+      SECRETKEY_PATH: /root/.flowise
+      LOG_PATH: /root/.flowise/logs
+      BLOB_STORAGE_PATH: /root/.flowise/storage
+    volumes:
+      - flowise:/root/.flowise
 
 
 volumes:
   open-webui:
   ollama:
+  flowise:
 
 networks:
   internal:
