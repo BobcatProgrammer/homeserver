@@ -1,14 +1,5 @@
 services:
-  ollama:
-      image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
-      container_name: ollama
-      volumes:
-        - ollama:/root/.ollama
-      pull_policy: always
-      tty: true
-      restart: unless-stopped
-      networks:
-        - internal
+
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
