@@ -31,6 +31,8 @@ services:
       - internal
     volumes:
       - /:/mnt/host:ro
+    environment:
+     DASHDOT_ENABLE_CPU_TEMPS: true
 
 volumes:
   uptime-kuma-data:
