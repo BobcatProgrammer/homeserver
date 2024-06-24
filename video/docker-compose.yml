@@ -15,13 +15,14 @@ services:
       REDIS_HOST: archivist-redis
       HOST_UID: 1000
       HOST_GID: 1000
-      TA_HOST: ${TA_HOST-tube.trockel.family}        
+      TA_HOST: "${TA_HOST?Variable required}"
       TA_USERNAME: ${TA_USERNAME-admin}
       TA_PASSWORD: ${TA_PASSWORD?Variable required}
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD?Variable required}
       TZ: Europe/Berlin
-      TA_ENABLE_AUTH_PROXY: true
-      TA_AUTH_PROXY_USERNAME_HEADER: HTTP_X_AUTHENTIK_USERNAME
+      TA_ENABLE_AUTH_PROXY: ${ENABLE_PROXY-false}
+      TA_AUTH_PROXY_USERNAME_HEADER: ${TA_AUTH_PROXY_USERNAME_HEADER-HTTP_REMOTE_USER}
+      DJANGO_DEBUG: ${DEBUG-false}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 2m
