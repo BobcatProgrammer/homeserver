@@ -57,6 +57,10 @@ services:
       PAPERLESS_ADMIN_PASSWORD: ${ADMIN_PASS:? Admin Pass must be set}
       # Paperless cusotmizing settings
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
+      # Setup barcode support
+      PAPERLESS_CONSUMER_ENABLE_BARCODES: true
+      PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE: true # enable setting ASN by ASN barcodes
+      PAPERLESS_CONSUMER_BARCODE_SCANNER: ZXING # switch from pyzbar to zxing for better recognition
 
 networks:
   internal:
