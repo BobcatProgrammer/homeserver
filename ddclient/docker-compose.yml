@@ -23,6 +23,7 @@ services:
       PROXIED: false
       UPTIMEKUMA: ${UPTIMEKUMA}
       UPDATE_CRON: ${UPDATE_CRON:-@every 5m}
+      IP6_PROVIDER: none
       
 
 
