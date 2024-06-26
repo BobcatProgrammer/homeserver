@@ -15,12 +15,14 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-      - CF_API_TOKEN=${CF_API_TOKEN:?Variable not set}
-      - DOMAINS=${DOMAINS:?Variable not set}
-      - PROXIED=false
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Berlin
+      CF_API_TOKEN: ${CF_API_TOKEN:?Variable not set}
+      DOMAINS: ${DOMAINS:?Variable not set}
+      PROXIED: false
+      UPTIMEKUMA: ${UPTIMEKUMA}
+      UPDATE_CRON: ${UPDATE_CRON:-@every 5m}
       
 
 
