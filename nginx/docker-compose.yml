@@ -42,7 +42,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Europe/Berlin
-      - EXCLUDE_IPS=172.22.0.1
+      - EXCLUDE_IPS=${EXCLUDE_IPS}
     volumes:
       - nginx_data:/opt/log:ro
 
