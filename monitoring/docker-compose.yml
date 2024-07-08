@@ -22,6 +22,18 @@ services:
     networks:
       - internal
 
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    networks:
+      - internal
+    volumes:
+      - /srv/homepage:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations, see alternative methods
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+
   dash:
     image: mauricenino/dashdot:latest
     container_name: dash
@@ -36,6 +48,7 @@ services:
 
 volumes:
   uptime-kuma-data:
+  homepage:
 
 networks:
   internal:
