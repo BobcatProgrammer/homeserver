@@ -61,3 +61,7 @@ networks:
   internal:
     name: internal
     external: true
+logging:
+  driver: journald
+  options:
+    tag: authentik
