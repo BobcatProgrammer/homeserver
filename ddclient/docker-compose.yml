@@ -6,17 +6,13 @@ services:
     restart: always
     networks:
       - internal
-    cap_add:
-      - SETUID
-      - SETGID
+    user: "1000:1000"
     cap_drop:
       - ALL
     read_only: true
     security_opt:
       - no-new-privileges:true
     environment:
-      PUID: 1000
-      PGID: 1000
       TZ: Europe/Berlin
       CF_API_TOKEN: ${CF_API_TOKEN:?Variable not set}
       DOMAINS: ${DOMAINS:?Variable not set}
