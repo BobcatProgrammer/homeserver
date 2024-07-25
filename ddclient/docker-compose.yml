@@ -6,6 +6,10 @@ services:
     restart: always
     networks:
       - internal
+    logging:
+      driver: journald
+      options:
+        tag: ddns
     cap_add:
       - SETUID
       - SETGID

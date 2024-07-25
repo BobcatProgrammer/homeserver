@@ -7,6 +7,10 @@ services:
     image: bbilly1/tubearchivist
     networks:
       - internal
+    logging:
+      driver: journald
+      options:
+        tag: tubearchivist
     volumes:
       - /nfs/downloads/tube:/youtube
       - cache:/cache
@@ -37,6 +41,10 @@ services:
     restart: unless-stopped
     networks:
       - internal
+    logging:
+      driver: journald
+      options:
+        tag: archivist-redis
     volumes:
       - archivist-redis:/data
     depends_on:
@@ -59,12 +67,20 @@ services:
       - es:/usr/share/elasticsearch/data    # check for permission error when using bind mount, see readme
     networks:
       - internal
+    logging:
+      driver: journald
+      options:
+        tag: archivist-es
 
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
     networks:
       - internal
+    logging:
+      driver: journald
+      options:
+        tag: jellyfin
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
