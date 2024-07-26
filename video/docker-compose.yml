@@ -83,6 +83,8 @@ services:
         tag: jellyfin
     group_add:
       - "109" # Passthrough render group for hardware transcoding
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
