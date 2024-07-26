@@ -81,6 +81,8 @@ services:
       driver: journald
       options:
         tag: jellyfin
+    group_add:
+      - "109" # Passthrough render group for hardware transcoding
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache
