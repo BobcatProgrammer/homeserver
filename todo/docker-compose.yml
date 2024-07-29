@@ -1,0 +1,19 @@
+services:
+  todo:
+    image: johannesjo/super-productivity:latest
+    container_name: super-productivity
+    restart: always
+    networks:
+      - internal
+    logging:
+      driver: journald
+      options:
+        tag: super-productivity
+    environment:
+      TZ: Europe/Berlin
+      
+
+networks:
+  internal:
+    name: internal
+    external: true
