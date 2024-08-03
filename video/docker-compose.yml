@@ -72,39 +72,11 @@ services:
       options:
         tag: archivist-es
 
-  jellyfin:
-    image: jellyfin/jellyfin
-    container_name: jellyfin
-    networks:
-      - internal
-    logging:
-      driver: journald
-      options:
-        tag: jellyfin
-    group_add:
-      - "109" # Passthrough render group for hardware transcoding
-    devices:
-      - /dev/dri/renderD128:/dev/dri/renderD128
-    volumes:
-      - jellyfin-config:/config
-      - jellyfin-cache:/cache
-      - type: bind
-        source: /nfs/video
-        target: /media
-      - type: bind
-        source: /nfs/downloads
-        target: /media2
-    restart: 'unless-stopped'
-    # Optional - alternative address used for autodiscovery
-    environment:
-      - JELLYFIN_PublishedServerUrl=https://stream.local.trockel.family
 
 volumes:
   cache:
   es:
   archivist-redis:
-  jellyfin-config:
-  jellyfin-cache:
 
 networks:
   internal:
