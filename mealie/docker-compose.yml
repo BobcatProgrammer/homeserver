@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  mealie:
+    image: hkotel/mealie:latest
+    container_name: mealie
+    environment:
+      ALLOW_SIGNUP: "false"
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Berlin
+      MAX_WORKERS: 1
+      WEB_CONCURRENCY: 1
+      APP_ENV: production
+      SECRET_KEY: ${SECRET_KEY:?secret key required}
+      BASE_URL: ${BASE_URL:-http://localhost}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-*}
+      DEBUG: ${DEBUG:-False}
+       # Database Settings
+      DB_ENGINE: postgres
+      POSTGRES_USER: mealie
+      POSTGRES_PASSWORD: ${DB_PASS:?database password required}
+      POSTGRES_SERVER: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: mealie
+      # OIDC Setup
+      OIDC_AUTH_ENABLED: true
+      OIDC_CONFIGURATION_URL: ${OIDC_CONFIGURATION_URL}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
+      OIDC_AUTO_REDIRECT: ${OIDC_AUTO_REDIRECT:-false}
+    volumes:
+      - mealie_data:/app/data
+    networks:
+      - internal
+    restart: always
+
+volumes:
+  mealie_data:
+
+networks:
+  internal:
+    name: internal
+    external: true
