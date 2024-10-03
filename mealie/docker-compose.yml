@@ -12,7 +12,7 @@ services:
       WEB_CONCURRENCY: 1
       APP_ENV: production
       BASE_URL: ${BASE_URL:-http://localhost}
-      DEBUG: ${DEBUG:-False}
+      API_DOCS: ${API_DOCS:-true}
        # Database Settings
       DB_ENGINE: postgres
       POSTGRES_USER: mealie
