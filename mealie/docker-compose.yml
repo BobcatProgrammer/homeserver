@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  mealie:
+    image: hkotel/mealie:latest
+    container_name: mealie
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=mealie
+      - DB_NAME=mealie
+      - DB_PASS=${DB_PASS:?database password required}
+      - APP_ENV=production
+      - SECRET_KEY=${SECRET_KEY:?secret key required}
+      - BASE_URL=${BASE_URL:-http://localhost}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      - DEBUG=${DEBUG:-False}
+      - TIMEZONE=${TIMEZONE:-UTC}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE:-en}
+      - DEFAULT_MEASUREMENT=${DEFAULT_MEASUREMENT:-metric}
+    volumes:
+      - mealie_data:/app/data
+    networks:
+      - internal
+    restart: always
+
+volumes:
+  mealie_data:
+
+networks:
+  internal:
+    name: internal
+    external: true
