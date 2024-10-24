@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ddclient:
-    image: favonia/cloudflare-ddns:latest
+    image: favonia/cloudflare-ddns:1.15.0
     container_name: cloudflare-ddns
     restart: always
     networks:
@@ -18,7 +18,7 @@ services:
       - no-new-privileges:true
     environment:
       TZ: Europe/Berlin
-      CF_API_TOKEN: ${CF_API_TOKEN:?Variable not set}
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:?Variable not set}
       DOMAINS: ${DOMAINS:?Variable not set}
       PROXIED: false
       UPTIMEKUMA: ${UPTIMEKUMA}
