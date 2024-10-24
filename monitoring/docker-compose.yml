@@ -1,13 +1,5 @@
 version: "3.9"
 services:
-  plugsy:
-    image: plugsy/core:latest
-    container_name: plugsy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
-    networks:
-      - internal
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -30,18 +22,6 @@ services:
     volumes:
       - /srv/homepage:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations, see alternative methods
-
-  dash:
-    image: mauricenino/dashdot:latest
-    container_name: dash
-    restart: unless-stopped
-    privileged: true
-    networks:
-      - internal
-    volumes:
-      - /:/mnt/host:ro
-    environment:
-     DASHDOT_ENABLE_CPU_TEMPS: true
 
 volumes:
   uptime-kuma-data:
