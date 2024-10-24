@@ -6,21 +6,17 @@ services:
     restart: always
     networks:
       - internal
+    user: "1000:1000"
     logging:
       driver: journald
       options:
         tag: ddns
-    cap_add:
-      - SETUID
-      - SETGID
     cap_drop:
       - ALL
     read_only: true
     security_opt:
       - no-new-privileges:true
     environment:
-      PUID: 1000
-      PGID: 1000
       TZ: Europe/Berlin
       CF_API_TOKEN: ${CF_API_TOKEN:?Variable not set}
       DOMAINS: ${DOMAINS:?Variable not set}
