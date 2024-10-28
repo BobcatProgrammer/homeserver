@@ -1,4 +1,4 @@
-service:
+services:
   scratchmap:
     image: ad3m3r5/scratch-map:latest
     restart: always
