@@ -14,10 +14,6 @@ services:
     restart: always
     networks:
       - internal
-    labels:
-      plugsy.name: MariaDB
-      plugsy.category: Infrastructure
-      plugsy.icon: "@styled-icons/simple-icons/Mariadb"
   adminer:
     image: adminer:4.8.1
     container_name: adminer
@@ -27,10 +23,6 @@ services:
       - ADMINER_DESIGN=pepa-linha
     networks:
       - internal
-    labels:
-      plugsy.name: Adminer
-      plugsy.category: Admin
-      plugsy.icon: "@styled-icons/fa-solid/Database"
 volumes:
   mariadb_data:
 
