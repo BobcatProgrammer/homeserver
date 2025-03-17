@@ -16,7 +16,7 @@ services:
       - cache:/cache
     environment:
       ES_URL: http://archivist-es:9200
-      REDIS_CON: redis://redis:6379:4
+      REDIS_HOST: archivist-redis
       HOST_UID: 1000
       HOST_GID: 1000
       TA_HOST: "${TA_HOST?Variable required}"
@@ -33,6 +33,20 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+    depends_on:
+      - archivist-es
+  archivist-redis:
+    image: redis/redis-stack-server
+    container_name: archivist-redis
+    restart: unless-stopped
+    networks:
+      - internal
+    logging:
+      driver: journald
+      options:
+        tag: archivist-redis
+    volumes:
+      - archivist-redis:/data
     depends_on:
       - archivist-es
   archivist-es:
