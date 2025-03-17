@@ -16,7 +16,7 @@ services:
       - cache:/cache
     environment:
       ES_URL: http://archivist-es:9200
-      REDIS_HOST: redis://redis:6379:4
+      REDIS_CON: redis://redis:6379:4
       HOST_UID: 1000
       HOST_GID: 1000
       TA_HOST: "${TA_HOST?Variable required}"
