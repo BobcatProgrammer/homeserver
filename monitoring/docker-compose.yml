@@ -22,7 +22,8 @@ services:
     volumes:
       - /srv/homepage:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations, see alternative methods
-
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS}
 volumes:
   uptime-kuma-data:
   homepage:
