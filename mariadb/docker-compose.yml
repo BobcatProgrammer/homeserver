@@ -15,7 +15,7 @@ services:
     networks:
       - internal
   adminer:
-    image: adminer:5.0.6
+    image: adminer:5.2.1
     container_name: adminer
     restart: always
     environment:
