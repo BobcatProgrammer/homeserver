@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   bookstack:
-    image: linuxserver/bookstack:24.10.20241104
+    image: linuxserver/bookstack:25.02.20250309
     container_name: bookstack
     environment:
       - PUID=1000
