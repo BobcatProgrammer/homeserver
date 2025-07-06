@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  audiobookshelf:
+    image: advplyr/audiobookshelf
+    container_name: audiobookshelf
+    networks:
+      - internal
+    volumes:
+      - config:/config
+      - metadata:/metadata
+      - /nfs/books/audiobooks:/audiobooks
+      - /nfs/books/podcasts:/podcasts
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - TZ=Europe/Berlin
+    restart: unless-stopped
+networks:
+  internal:
+    name: internal
+    external: true
+volumes:
+  config:
+  metadata:
