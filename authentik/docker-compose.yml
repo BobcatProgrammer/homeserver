@@ -1,6 +1,6 @@
 services:
   server:
-    image: ghcr.io/goauthentik/server:2025.4
+    image: ghcr.io/goauthentik/server:2025.10
     container_name: authentik
     restart: always
     command: server
@@ -27,7 +27,7 @@ services:
       - "${TAILSCALE_IP:-0.0.0.0}:${AUTHENTIK_PORT_HTTP:-9000}:9000"
       - "${TAILSCALE_IP:-0.0.0.0}:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
   worker:
-    image: ghcr.io/goauthentik/server:2025.4
+    image: ghcr.io/goauthentik/server:2025.10
     container_name: authentik-worker
     restart: always
     command: worker
